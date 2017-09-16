@@ -311,7 +311,6 @@ var selectRandomMeat = function() {
 var selectRandomNonMeat = function() {
   var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
   return randomNonMeat;
-<<<<<<< new
 };
 
 var selectRandomCheese = function() {
@@ -344,7 +343,6 @@ var makeRandomPizza = function() {
     pizza = pizza + ingredientItemizer(selectRandomMeat());
   }
 
-<<<<<<< new
   for (var j = 0; j < numberOfNonMeats; j++) {
     pizza = pizza + ingredientItemizer(selectRandomNonMeat());
   }
@@ -487,17 +485,36 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+function requestTick() {
+  // Found this functionality suggestion online -
+  // Limits the requests for animation frames so
+  // that they don't stack up and fire all at once.
+
+  if(!ticking) {
+    requestAnimationFrame(updatePositions);
+  }
+
+  // Set ticking to true so we don't request more Animation Frames than
+  // we can handle.
+
+  ticking = true;
+}
+
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
+
+  // Reset ticking to start the updating process again.
+  ticking = false;
+
   frame++;
   window.performance.mark("mark_start_frame");
-
+  var position = (document.body.scrollTop / 1250);
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin(position + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -512,7 +529,7 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll', requestTick);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
@@ -528,5 +545,5 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
-  updatePositions();
+  requestAnimationFrame(updatePositions);
 });
