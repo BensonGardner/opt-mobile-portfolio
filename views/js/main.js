@@ -505,6 +505,8 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+var ticking = false;
+
 function requestTick() {
   // Found this functionality suggestion online -
   // Limits the requests for animation frames so
