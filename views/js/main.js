@@ -424,6 +424,26 @@ var resizePizzas = function(size) {
 
     switch(size) {
       case "1":
+        newImage = pizza-small.jpg;
+        break;
+      case "2":
+        newWidth = pizza.jpg;
+        break;
+      case "3":
+        newWidth = pizza-large.jpg;
+        break;
+      default:
+        console.log("bug in sizeSwitcher");
+    }
+
+    var randomPizzaAll = document.querySelectorAll(".randomPizzaContainer");
+
+    for (var i = 0; i < randomPizzaAll.length; i++) {
+      randomPizzaAll[i].style.width = newWidth + '%';
+    }
+/* OLD VERSION
+    switch(size) {
+      case "1":
         newWidth = 25;
         break;
       case "2":
@@ -440,7 +460,7 @@ var resizePizzas = function(size) {
 
     for (var i = 0; i < randomPizzaAll.length; i++) {
       randomPizzaAll[i].style.width = newWidth + '%';
-    }
+    }*/
   }
 
   changePizzaSizes(size);
@@ -511,7 +531,8 @@ function updatePositions() {
 
   frame++;
   window.performance.mark("mark_start_frame");
-  var position = (document.body.scrollTop / 1250);
+  var position = window.scrollY / 1250;
+  console.log(position);
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin(position + (i % 5));
