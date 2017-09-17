@@ -421,7 +421,7 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-
+/* new version in progress
     switch(size) {
       case "1":
         newImage = pizza-small.jpg;
@@ -440,8 +440,8 @@ var resizePizzas = function(size) {
 
     for (var i = 0; i < randomPizzaAll.length; i++) {
       randomPizzaAll[i].style.width = newWidth + '%';
-    }
-/* OLD VERSION
+    } */
+// OLD VERSION
     switch(size) {
       case "1":
         newWidth = 25;
@@ -460,7 +460,7 @@ var resizePizzas = function(size) {
 
     for (var i = 0; i < randomPizzaAll.length; i++) {
       randomPizzaAll[i].style.width = newWidth + '%';
-    }*/
+    }
   }
 
   changePizzaSizes(size);
