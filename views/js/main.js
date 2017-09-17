@@ -417,6 +417,8 @@ var resizePizzas = function(size) {
     }
   }
 
+  var newWidth;
+
   changeSliderLabel(size);
 
   // Iterates through pizza elements on the page and changes their widths
