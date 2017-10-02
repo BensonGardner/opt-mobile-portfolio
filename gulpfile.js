@@ -45,7 +45,7 @@ gulp.task('images', function() {
   var final = 'img/';
   return gulp.src('source/img/**/*')
     .pipe(newer(final))
-    .pipe(imagemin({ optimizationLevel: 6 }))
+    .pipe(imagemin({ optimizationLevel: 7 }))
     .pipe(gulp.dest(final));
 });
 
