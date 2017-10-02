@@ -42,8 +42,8 @@ gulp.task('browserSync', function() {
 
 // image processing
 gulp.task('images', function() {
-  var final = 'img/';
-  return gulp.src('source/img/**/*')
+  var final = '';
+  return gulp.src('source/**/*')
     //.pipe(newer(final))
     .pipe(imagemin({ optimizationLevel: 7 }))
     .pipe(gulp.dest(final));
@@ -64,5 +64,5 @@ gulp.task('imageSpew', function(filename, pixelwidth) {
     // actully, here's the thing. I don't need pixelwidth to be a var , bc i will know in advance the widths that are possible based on the code.
 });
 
-gulp.task('default', ['minify-css', 'compress', 'minify', 'images']);
+gulp.task('default', ['minify-css', 'compress', 'minify', 'images', 'image-smush']);
 
