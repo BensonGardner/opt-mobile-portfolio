@@ -44,7 +44,6 @@ gulp.task('browserSync', function() {
 gulp.task('images', function() {
   var final = '';
   return gulp.src('source/**/*')
-    //.pipe(newer(final))
     .pipe(imagemin({ optimizationLevel: 7 }))
     .pipe(gulp.dest(final));
 });
