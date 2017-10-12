@@ -48,11 +48,12 @@ gulp.task('images', function() {
     .pipe(gulp.dest(final));
 });
 
-gulp.task('image-smush', function () {
-    return gulp.src('source/**/*.{jpg,png}')
-        .pipe(smushit())
-        .pipe(gulp.dest(''));
-});
+//not working
+// gulp.task('image-smush', function () {
+//    return gulp.src('source/**/*.{jpg,png}')
+//       .pipe(smushit())
+//        .pipe(gulp.dest(''));
+//});
 
 // image processing - first attempt - delete?
 gulp.task('imageSpew', function(filename, pixelwidth) {
