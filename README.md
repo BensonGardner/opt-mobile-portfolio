@@ -16,7 +16,7 @@ This site is a mock up portfolio, created by Udacity.com and optimized by studen
 
 2. Adjust sizes of images for index page.
     
-### Main.js: 
+### Main.js
 1. Change scrollTop to window.scrollY to avoid layout thrashing.
 
 2. Move reading of window.scrollY to outside the for-loop in updatePositions(), so that it only reads the value as much as is necessary.
