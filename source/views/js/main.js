@@ -421,29 +421,12 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Iterates through pizza elements on the page and changes their widths
+  // Iterates through pizza elements on the page and changes their widths.
+  // This version of the size-changing functionality simplifies the 
+  // computations and removes the need to repeatedly perform the DOM-query
+  // of "document.querySelectorAll". In this version, changePizzaSizes 
+  // uses a fixed percentage width for each size. The effect is identical.
   function changePizzaSizes(size) {
-/* new version in progress
-    switch(size) {
-      case "1":
-        newImage = pizza-small.jpg;
-        break;
-      case "2":
-        newWidth = pizza.jpg;
-        break;
-      case "3":
-        newWidth = pizza-large.jpg;
-        break;
-      default:
-        console.log("bug in sizeSwitcher");
-    }
-
-    var randomPizzaAll = document.querySelectorAll(".randomPizzaContainer");
-
-    for (var i = 0; i < randomPizzaAll.length; i++) {
-      randomPizzaAll[i].style.width = newWidth + '%';
-    } */
-// OLD VERSION
     switch(size) {
       case "1":
         newWidth = 25;
@@ -471,13 +454,8 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_end_resize");
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
-//<<<<<<< new
   console.log("Time to resize pizzas: " + timeToResize[timeToResize.length-1].duration + "ms");
 };
-/*=======
-  console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-}
->>>>>>> old-pizza-perf */
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
@@ -507,19 +485,17 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+// Using functionality suggested online for a similar problem,
+// limit our requests for animation frames to one at a time - because when they stack up and fire all at once, performance suffers with no benefit.
 var ticking = false;
 
 function requestTick() {
-  // Found this functionality suggestion online -
-  // Limits the requests for animation frames so
-  // that they don't stack up and fire all at once.
 
   if(!ticking) {
     requestAnimationFrame(updatePositions);
   }
 
-  // Set ticking to true so we don't request more Animation Frames than
-  // we can handle.
+  // Set ticking to true so we don't request more than one animation frame at a time.
 
   ticking = true;
 }

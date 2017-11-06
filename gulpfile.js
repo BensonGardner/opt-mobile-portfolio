@@ -1,7 +1,8 @@
+/* Require modules for minifying 
+images and code
+*/
+
 var gulp = require('gulp'), 
-    browserSync = require('browser-sync').create(),
-    smushit = require('gulp-smushit'),
-    newer = require('gulp-newer'),
     imagemin = require('gulp-imagemin'),
     uglify = require('gulp-uglify'),
     pump = require('pump'),
@@ -30,16 +31,6 @@ gulp.task('compress', function (cb) {
   );
 });
 
-gulp.task('hello', function() {
-    console.log('Yo yo yo!');
-});
-
-gulp.task('browserSync', function() {
-    browerSync.init({
-        server: true
-    })
-});
-
 // image processing
 gulp.task('images', function() {
   var final = '';
@@ -48,21 +39,4 @@ gulp.task('images', function() {
     .pipe(gulp.dest(final));
 });
 
-//not working
-// gulp.task('image-smush', function () {
-//    return gulp.src('source/**/*.{jpg,png}')
-//       .pipe(smushit())
-//        .pipe(gulp.dest(''));
-//});
-
-// image processing - first attempt - delete?
-gulp.task('imageSpew', function(filename, pixelwidth) {
-    return gulp.src (filename)
-        .pipe() // find a gulp plugin that will make your images the width of pixelwidth
-    // gotta say, though, in the end we'll want to have gulp make an array of images tha thelp with mobile.
-    // could make functionality such that pixelwidth is an array, and it reads each value, then spits out a bunch of images at the right sizes.
-    // actully, here's the thing. I don't need pixelwidth to be a var , bc i will know in advance the widths that are possible based on the code.
-});
-
-gulp.task('default', ['minify-css', 'compress', 'minify', 'images', 'image-smush']);
-
+gulp.task('default', ['minify-css', 'compress', 'minify', 'images']);
