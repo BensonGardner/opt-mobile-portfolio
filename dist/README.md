@@ -1,20 +1,16 @@
 # Website Performance Optimization portfolio project
 
-This site is a mock up portfolio, created by Udacity.com and optimized by student Benson Gardner as part of coursework for the Front-End Developer Nanodegree. It showcases the work of a fictional person as an exercise in optimization.
+This site is a portfolio, mocked up by Udacity.com and optimized by student Benson Gardner as part of coursework for the Front-End Developer Nanodegree. It showcases the work of a fictional person as an exercise in optimization, especially for mobile.
 
 ## Notes on Structure
-This site has been processed using Gulp. 
+This site has been processed using Gulp. The file structure is standard: source files in "source", distribution files in "dist". 
 
-The file structure is somewhat unusual. 
-
-I set the gulp destination (dist) folder to be the main directory, opt-mobile-portfolio, rather than a subfolder called "dist". The reason was, I knew that Udacity wanted to see the src folder, and I didn't want to have "/dist/" inserted into the URLS of all the pages.
-
-I realize this goes against recommended practice, though, so in retrospect, maybe it would be better to accept the "/dist/" in the URLs, since after all this is only for a class. To Udacity reviewers: Please let me know if this needs to be changed and resubmitted.
+Because a project requirement was to include the "source" folder (understandably), the string "dist" ends up inserted into all the URLs. (Initially, I used an unconventional file structure to avoid this, until I noticed that the project requirements specifically instructed otherwise.)  
 
 ### Steps to Download, Configure and Implement the Task Runner
-To run my gulpfile on your machine, you have to have npm installed, then use it to install gulp, as well as the plugins: gulp-imagemin, gulp-uglify, pump, gulp-clean-css, gulp-htmlmin. 
+To run my gulpfile on your machine, you have to have npm installed, then use it to install gulp, as well as the plugins: gulp-imagemin, gulp-uglify, pump, gulp-clean-css, gulp-htmlmin.
 
-From your command line, navigate to the project folder and type "gulp". This will activate the default action within the gulpfile - processing everything in the src folder and spitting out optimized files into the main directory.
+From your command line, navigate to the project folder and type "gulp". This will activate the default action within the gulpfile - processing everything in the source folder and spitting out optimized files into the main directory.
 
 ## Optimizations Made
 
