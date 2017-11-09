@@ -1,3 +1,8 @@
+# To load this site, navigate to:
+https://bensongardner.github.io/opt-mobile-portfolio/dist/
+
+This is due to course-specific requirements which altered the file structure (see below).
+
 # Website Performance Optimization portfolio project
 
 This site is a portfolio, mocked up by Udacity.com and optimized by student Benson Gardner as part of coursework for the Front-End Developer Nanodegree. It showcases the work of a fictional person as an exercise in optimization, especially for mobile.
@@ -5,7 +10,7 @@ This site is a portfolio, mocked up by Udacity.com and optimized by student Bens
 ## Notes on Structure
 This site has been processed using Gulp. The file structure is standard: source files in "source", distribution files in "dist". 
 
-Because a project requirement was to include the "source" folder (understandably), the string "dist" ends up inserted into all the URLs. (Initially, I used an unconventional file structure to avoid this, until I noticed that the project requirements specifically instructed otherwise.)  
+Because there was a project requirement to include the "source" folder, the string "dist" ends up inserted into all the URLs -- including index.html. (Initially, I used an unconventional file structure to avoid this, until I noticed that the submission instructions specifically stated otherwise.)  
 
 ### Steps to Download, Configure and Implement the Task Runner
 To run my gulpfile on your machine, you have to have npm installed, then use it to install gulp, as well as the plugins: gulp-imagemin, gulp-uglify, pump, gulp-clean-css, gulp-htmlmin.
