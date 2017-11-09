@@ -10,7 +10,7 @@ This site is a portfolio, mocked up by Udacity.com and optimized by student Bens
 ## Notes on Structure
 This site has been processed using Gulp. The file structure is standard: source files in "source", distribution files in "dist". 
 
-Because there was a project requirement to include the "source" folder, the string "dist" ends up inserted into all the URLs -- including index.html. (Initially, I used an unconventional file structure to avoid this, until I noticed that the submission instructions specifically stated otherwise.)  
+Because there was a project requirement to include the "source" folder, the production files had to be housed inside a "dist" folder. Thus the string, "dist", ends up inserted into all the URLs -- including index.html. (Initially, I used an unconventional file structure to avoid this, until I noticed that the submission instructions specifically indicated otherwise.)  
 
 ### Steps to Download, Configure and Implement the Task Runner
 To run my gulpfile on your machine, you have to have npm installed, then use it to install gulp, as well as the plugins: gulp-imagemin, gulp-uglify, pump, gulp-clean-css, gulp-htmlmin.
