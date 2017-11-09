@@ -1,6 +1,4 @@
-/* Require modules for minifying 
-images and code
-*/
+// Require modules for minifying images and code
 
 var gulp = require('gulp'), 
     imagemin = require('gulp-imagemin'),
@@ -30,7 +28,7 @@ gulp.task('compress', function (cb) {
     cb
   );
 });
-
+                                                        
 // image processing
 gulp.task('images', function() {
   var final = 'dist';
