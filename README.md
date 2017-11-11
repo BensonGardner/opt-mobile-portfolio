@@ -33,6 +33,8 @@ From your command line, navigate to the project folder and type "gulp". This wil
 1. Reduce size of pizzeria.jpg, and create a small version of pizzeria.jpg for index page.
 
 2. Adjust sizes of images for index page.
+
+3. Created smaller version of pizza.png, sized for the background, called pizza-mover.png.
     
 ### Main.js
 1. Change scrollTop to window.scrollY to avoid layout thrashing.
@@ -46,6 +48,8 @@ From your command line, navigate to the project folder and type "gulp". This wil
 5. Use a "ticking" function to limit requests for animation frames so that only one fires at a time.
 
 6. Replace all querySelectorAll uses with getElementByID or getElementByClassName.
+
+7. Move var declaration in the .mover animation loop to the initialization of loop.
 
 ### Gulp
 1. Minify (uglify/compress/clean) HTML, JS, and CSS.
