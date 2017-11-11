@@ -45,6 +45,8 @@ From your command line, navigate to the project folder and type "gulp". This wil
 
 5. Use a "ticking" function to limit requests for animation frames so that only one fires at a time.
 
+6. Replace all querySelectorAll uses with getElementByID or getElementByClassName.
+
 ### Gulp
 1. Minify (uglify/compress/clean) HTML, JS, and CSS.
 
