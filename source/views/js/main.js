@@ -515,7 +515,9 @@ function updatePositions() {
 
   frame++;
   window.performance.mark("mark_start_frame");
-  var position = window.scrollY / 1250;
+// Changed position  from window.scrollY to a var that has more compatibility. It will default to 0 if none are defined. Inspired by Udacity reviewer and picking up on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
+  var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  var position = top / 1250;
   console.log(position);
   var items = document.querySelectorAll('.mover');
   for (var i = 0, len = items.length, phase; i < len; i++) {
