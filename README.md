@@ -26,6 +26,9 @@ From your command line, navigate to the project folder and type "gulp". This wil
 
 3. Defer or make asynchronous the loading of both JS files.
 
+### CSS 
+1. Hardware-accelerate CSS animation of pizzas by using translateZ(0) to access GPU.
+
 ### Images
 1. Reduce size of pizzeria.jpg, and create a small version of pizzeria.jpg for index page.
 

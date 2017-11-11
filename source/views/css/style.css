@@ -29,7 +29,24 @@ form {
   font-weight: 800;
 }
 
+/* 
+Use transform: translateZ(0) to access the GPU
+(hardware-accelerate the CSS) and use backface-visibility:hidden
+to improve performance of the GPU 
+*/
+
 .mover {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  
   position: fixed;
   width: 256px;
   z-index: -1;
