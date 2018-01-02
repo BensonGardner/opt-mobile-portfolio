@@ -20,11 +20,11 @@ From your command line, navigate to the project folder and type "gulp". This wil
 ## Optimizations Made
 
 ### Index.html
-1. Load all critical style inline in head.
+1. Load critical style inline in head.
 
 2. Use 'print' media type to avoid initial loading of print stylesheet.
 
-3. Use a script to defer-load the rest of style.css (Print style was left as a link in the head since it shouldn't block rendering unless you're printing.)
+3. Use a script in footer to defer-load the rest of style.css (Print style was left as a link in the head since it shouldn't block rendering unless you're printing.)
 
 4. Defer or make asynchronous the loading of both JS files.
 

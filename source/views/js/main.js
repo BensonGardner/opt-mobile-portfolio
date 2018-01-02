@@ -518,7 +518,8 @@ function updatePositions() {
 
   frame++;
   window.performance.mark("mark_start_frame");
-  /* Changed position  from window.scrollY to a var that has more compatibility. It will default to 0 if none are defined. Inspired by Udacity reviewer and picking up on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
+
+  /* Changed position from window.scrollY to a var that has more compatibility. It will default to 0 if none are defined. Inspired by Udacity reviewer and picking up on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
   */
     
   var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
@@ -546,29 +547,30 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', requestTick);
 
-// Generates the sliding pizzas when the page loads.
-/* Optimizations: 
-    Created specially sized version of pizza.png
-     called pizza-mover.png
-    Moved declaration of elem to initialization of the loop
-    Created a var called movingPizzas, defined within this fcn 
-    but outside of the for loops, so that selection of the movingPizzas1
-    only has to be performed once in the function, not each time the loop runs.
-    Changed number of pizzas to only cover the screen size -- h
-    however,this isn't workin gyet becuase too mamy on mobile
-    Once i get this working i need to write it again on the readme.
+/* Generates the sliding pizzas when the page loads.
+   Optimizations: 
+    - Created specially sized version of pizza.png
+      called pizza-mover.png
+    - Moved declaration of elem to initialization of the loop
+    - Created a var called movingPizzas, defined within this fcn 
+      but outside of the for loops 
+    - Changed number of pizzas to only cover the screen size -- h
+      however,this isn't workin gyet becuase too mamy on mobile
+      Once i get this working i need to write it again on the readme.
+    - Added vertical padding to vertically center the pizzas that were rendered
 */
 
 var screenHeight = window.screen.height;
-
+    
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8,
-      s = 256,
-      rows = screenHeight / 256,
-      elements = cols * rows;
+  var s = 320;
+      cols = 6,
+      rows = 4,
+      elements = cols * rows,
+      verticalPadding = (screenHeight % s),
       movingPizzas = document.getElementById('movingPizzas1');
 
-  console.log("elements = " + elements);
+  console.log("screenHeight = " + screenHeight + ". rows = " + rows + ". elements = " + elements);
     
   for (var i = 0, elem; i < elements; i++) {
     elem = document.createElement('img');
@@ -577,8 +579,10 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    elem.style.top = (Math.floor(i / cols) * s + verticalPadding) + 'px';
     movingPizzas.appendChild(elem);
+    console.log("Pizza " + i + "at " + elem.basicLeft + " left and " + elem.style.top + " top");
   }
+    
   requestAnimationFrame(updatePositions);
 });
