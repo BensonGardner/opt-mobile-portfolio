@@ -407,13 +407,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.getElementByID("pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.getElementByID("pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.getElementByID("pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -518,10 +518,10 @@ function updatePositions() {
   /* Changed position  from window.scrollY to a var that has more compatibility. It will default to 0 if none are defined. Inspired by Udacity reviewer and picking up on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
   */
     
-  var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
   var position = top / 1250;
   console.log(position);
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName("mover");
   
   // Declared phase var in initialization of loop so it isn't 
   // re-declared each time.
@@ -547,12 +547,20 @@ window.addEventListener('scroll', requestTick);
 /* Optimizations: 
     Created specially sized version of pizza.png
      called pizza-mover.png
-   
+    Changed number of pizzas to only cover the screen size -- h
+    however,this isn't workin gyet becuase too mamy on mobile
+    Once i get this working i need to write it again on the readme.
+*/
+
+var screenHeight = window.screen.height;
 
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var cols = 8,
+      s = 256,
+      rows = screenHeight / 256,
+      elements = cols * rows; 
+  console.log("elements = " + elements);
+  for (var i = 0; i < elements; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza-mover.png";
@@ -560,7 +568,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementByID("movingPizzas1").appendChild(elem);
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   requestAnimationFrame(updatePositions);
 });
