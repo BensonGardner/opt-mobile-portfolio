@@ -20,11 +20,13 @@ From your command line, navigate to the project folder and type "gulp". This wil
 ## Optimizations Made
 
 ### Index.html
-1. Move CSS stylesheet references to bottom of index.html, below the HTML code (incorporating minimal, essential CSS into the HTML code so that the page looks right while the stylesheets are loading). 
+1. Load all critical style inline in head.
 
 2. Use 'print' media type to avoid initial loading of print stylesheet.
 
-3. Defer or make asynchronous the loading of both JS files.
+3. Use a script to defer-load the rest of style.css (Print style was left as a link in the head since it shouldn't block rendering unless you're printing.)
+
+4. Defer or make asynchronous the loading of both JS files.
 
 ### CSS 
 1. Hardware-accelerate CSS animation of pizzas by using translateZ(0) to access GPU.
