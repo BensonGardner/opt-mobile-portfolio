@@ -49,7 +49,9 @@ From your command line, navigate to the project folder and type "gulp". This wil
 
 6. Replace all querySelectorAll uses with getElementByID or getElementByClassName.
 
-7. Move var declaration in the .mover animation loop to the initialization of loop.
+7. Move var declarations outside of, or to initializations of, the loops that animate .mover, create and append pizzas.
+
+9. Reduce the number of pizzas rendered to only the number that appears on the screen (IN PROGRESS).
 
 ### Gulp
 1. Minify (uglify/compress/clean) HTML, JS, and CSS.

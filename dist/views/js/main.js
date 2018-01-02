@@ -462,7 +462,10 @@ var resizePizzas = function(size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
-// This for-loop actually creates and appends all of the pizzas when the page loads
+// This for-loop actually creates and appends all 
+// of the pizzas when the page loads.
+// Declaration of pizzasDiv variable has been 
+// moved outside of for loop. 
 
 var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
@@ -547,6 +550,10 @@ window.addEventListener('scroll', requestTick);
 /* Optimizations: 
     Created specially sized version of pizza.png
      called pizza-mover.png
+    Moved declaration of elem to initialization of the loop
+    Created a var called movingPizzas, defined within this fcn 
+    but outside of the for loops, so that selection of the movingPizzas1
+    only has to be performed once in the function, not each time the loop runs.
     Changed number of pizzas to only cover the screen size -- h
     however,this isn't workin gyet becuase too mamy on mobile
     Once i get this working i need to write it again on the readme.
@@ -558,17 +565,20 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8,
       s = 256,
       rows = screenHeight / 256,
-      elements = cols * rows; 
+      elements = cols * rows;
+      movingPizzas = document.getElementById('movingPizzas1');
+
   console.log("elements = " + elements);
-  for (var i = 0; i < elements; i++) {
-    var elem = document.createElement('img');
+    
+  for (var i = 0, elem; i < elements; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza-mover.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementById("movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   requestAnimationFrame(updatePositions);
 });
