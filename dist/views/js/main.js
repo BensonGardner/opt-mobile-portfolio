@@ -16,6 +16,9 @@ Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
 */
 
+// Throughout this code, querySelectorAll has been replaced by getElementByClassName
+// or getElementById.
+
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
@@ -404,13 +407,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -441,7 +444,7 @@ var resizePizzas = function(size) {
         console.log("bug in sizeSwitcher");
     }
 
-    var randomPizzaAll = document.querySelectorAll(".randomPizzaContainer");
+    var randomPizzaAll = document.getElementByClassName("randomPizzaContainer");
 
     for (var i = 0; i < randomPizzaAll.length; i++) {
       randomPizzaAll[i].style.width = newWidth + '%';
@@ -460,8 +463,9 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -511,11 +515,18 @@ function updatePositions() {
 
   frame++;
   window.performance.mark("mark_start_frame");
-  var position = window.scrollY / 1250;
+  /* Changed position  from window.scrollY to a var that has more compatibility. It will default to 0 if none are defined. Inspired by Udacity reviewer and picking up on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
+  */
+    
+  var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+  var position = top / 1250;
   console.log(position);
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(position + (i % 5));
+  var items = document.getElementsByClassName("mover");
+  
+  // Declared phase var in initialization of loop so it isn't 
+  // re-declared each time.
+  for (var i = 0, len = items.length, phase; i < len; i++) {
+    phase = Math.sin(position + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -533,18 +544,31 @@ function updatePositions() {
 window.addEventListener('scroll', requestTick);
 
 // Generates the sliding pizzas when the page loads.
+/* Optimizations: 
+    Created specially sized version of pizza.png
+     called pizza-mover.png
+    Changed number of pizzas to only cover the screen size -- h
+    however,this isn't workin gyet becuase too mamy on mobile
+    Once i get this working i need to write it again on the readme.
+*/
+
+var screenHeight = window.screen.height;
+
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var cols = 8,
+      s = 256,
+      rows = screenHeight / 256,
+      elements = cols * rows; 
+  console.log("elements = " + elements);
+  for (var i = 0; i < elements; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
-    elem.src = "images/pizza.png";
+    elem.src = "images/pizza-mover.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   requestAnimationFrame(updatePositions);
 });
