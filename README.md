@@ -53,7 +53,9 @@ From your command line, navigate to the project folder and type "gulp". This wil
 
 7. Move var declarations outside of, or to initializations of, the loops that animate .mover, create and append pizzas.
 
-9. Reduce the number of pizzas rendered to only the number that appears on the screen (IN PROGRESS).
+8. Reduce number of columns of moving pizzas from 8 to 6 - similar effect, less demand on browser.
+
+9. Reduce the number of pizzas rendered to only the number that appears on the screen.
 
 ### Gulp
 1. Minify (uglify/compress/clean) HTML, JS, and CSS.

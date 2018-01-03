@@ -522,7 +522,7 @@ function updatePositions() {
   /* Changed position from window.scrollY to a var that has more compatibility. It will default to 0 if none are defined. Inspired by Udacity reviewer and picking up on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
   */
     
-  var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+  var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
   var position = top / 1250;
   var items = document.getElementsByClassName("mover");
   
@@ -553,23 +553,28 @@ window.addEventListener('scroll', requestTick);
     - Moved declaration of elem to initialization of the loop
     - Created a var called movingPizzas, defined within this fcn 
       but outside of the for loops 
-    - Changed number of pizzas to only cover the screen size -- h
-      however,this isn't workin gyet becuase too mamy on mobile
-      Once i get this working i need to write it again on the readme.
-    - Added vertical padding to vertically center the pizzas that were rendered
-*/
+    - Changed number of pizzas to only cover the screen size, adding 
+      vertical padding for aesthetics.
+    - Reduced number of columns to 6 - which doesn't change the effect
+      much.
+  */
 
+// Get height of screen.
 var screenHeight = window.screen.height;
     
 document.addEventListener('DOMContentLoaded', function() {
-  var s = 320;
+  var s = 256,
       cols = 6,
-      rows = 4,
+      // Designate as many rows as will fit on the screen
+      rows = Math.round(screenHeight / s),
+      // Get total number of pizzas.
       elements = cols * rows,
-      verticalPadding = (screenHeight % s),
+      // Calculate spacing which we'll use to make the rows more vertically centered.  
+      // 100 reflects the height of each row's images.
+      verticalPadding = (100 + (screenHeight % s)) / rows,
       movingPizzas = document.getElementById('movingPizzas1');
 
-  console.log("screenHeight = " + screenHeight + ". rows = " + rows + ". elements = " + elements);
+  console.log("screenHeight = " + screenHeight + ". cols = " + cols + ". rows = " + rows + ". elements = " + elements + ". verticalPadding = " + verticalPadding + ". ");
     
   for (var i = 0, elem; i < elements; i++) {
     elem = document.createElement('img');
@@ -578,7 +583,8 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s + verticalPadding) + 'px';
+    elem.style.top = Math.floor(i / cols) * (s + verticalPadding) + 'px'; 
+    console.log("Math.floor(i / cols) * (s + verticalPadding) = " + (Math.floor(i / cols) * (s + verticalPadding)) + ".");
     movingPizzas.appendChild(elem);
     console.log("Pizza " + i + "at " + elem.basicLeft + " left and " + elem.style.top + " top");
   }
