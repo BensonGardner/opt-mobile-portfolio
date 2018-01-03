@@ -493,7 +493,9 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 }
 
 // Using functionality suggested online for a similar problem,
-// limit our requests for animation frames to one at a time - because when they stack up and fire all at once, performance suffers with no benefit.
+// this code limit our requests for animation frames to one 
+// at a time - because when they stack up and fire all at once, 
+// performance suffers with no benefit.
 var ticking = false;
 
 function requestTick() {
@@ -507,7 +509,8 @@ function requestTick() {
   ticking = true;
 }
 
-// The following code for sliding background pizzas was pulled from Ilya's demo found at:
+// The following code for sliding background pizzas was 
+// pulled from Ilya's demo found at: 
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
@@ -519,7 +522,10 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  /* Changed position from window.scrollY to a var that has more compatibility. It will default to 0 if none are defined. Inspired by Udacity reviewer and picking up on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
+  /* Changed position from window.scrollY to a var that 
+  has more compatibility. It will default to 0 if none 
+  are defined. Inspired by Udacity reviewer and picking up
+  on suggestions from Stack Overflow users at https://stackoverflow.com/questions/19618545/body-scrolltop-vs-documentelement-scrolltop-vs-window-pagyoffset-vs-window-scrol/20478983  
   */
     
   var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -547,14 +553,14 @@ function updatePositions() {
 window.addEventListener('scroll', requestTick);
 
 /* Generates the sliding pizzas when the page loads.
-   Optimizations: 
+   Optimizations Implemented: 
     - Created specially sized version of pizza.png
       called pizza-mover.png
     - Moved declaration of elem to initialization of the loop
     - Created a var called movingPizzas, defined within this fcn 
       but outside of the for loops 
-    - Changed number of pizzas to only cover the screen size, adding 
-      vertical padding for aesthetics.
+    - Changed number of pizzas to only cover the screen size, with 
+      vertical padding added for aesthetics.
     - Reduced number of columns to 6 - which doesn't change the effect
       much.
   */
@@ -566,16 +572,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var s = 256,
       cols = 6,
       // Designate as many rows as will fit on the screen
+      // (Using Math.round instead of Math.floor because a 
+      // partially visible row is better than excessive 
+      // empty space)
       rows = Math.round(screenHeight / s),
-      // Get total number of pizzas.
+      // Get total number of pizzas for use in for-loop below
       elements = cols * rows,
       // Calculate spacing which we'll use to make the rows more vertically centered.  
-      // 100 reflects the height of each row's images.
       verticalPadding = (100 + (screenHeight % s)) / rows,
       movingPizzas = document.getElementById('movingPizzas1');
-
-  console.log("screenHeight = " + screenHeight + ". cols = " + cols + ". rows = " + rows + ". elements = " + elements + ". verticalPadding = " + verticalPadding + ". ");
-    
+  
   for (var i = 0, elem; i < elements; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
@@ -584,7 +590,6 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = Math.floor(i / cols) * (s + verticalPadding) + 'px'; 
-    console.log("Math.floor(i / cols) * (s + verticalPadding) = " + (Math.floor(i / cols) * (s + verticalPadding)) + ".");
     movingPizzas.appendChild(elem);
     console.log("Pizza " + i + "at " + elem.basicLeft + " left and " + elem.style.top + " top");
   }
