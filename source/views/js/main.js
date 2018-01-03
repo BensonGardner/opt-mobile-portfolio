@@ -561,8 +561,6 @@ window.addEventListener('scroll', requestTick);
       but outside of the for loops 
     - Changed number of pizzas to only cover the screen size, with 
       vertical padding added for aesthetics.
-    - Reduced number of columns to 6 - which doesn't change the effect
-      much.
   */
 
 // Get height of screen.
@@ -570,17 +568,19 @@ var screenHeight = window.screen.height;
     
 document.addEventListener('DOMContentLoaded', function() {
   var s = 256,
-      cols = 6,
+      cols = 8,
       // Designate as many rows as will fit on the screen
       // (Using Math.round instead of Math.floor because a 
       // partially visible row is better than excessive 
       // empty space)
-      rows = Math.round(screenHeight / s),
+      rows = Math.min(3, Math.round(screenHeight / s)),
       // Get total number of pizzas for use in for-loop below
       elements = cols * rows,
       // Calculate spacing which we'll use to make the rows more vertically centered.  
       verticalPadding = (100 + (screenHeight % s)) / rows,
       movingPizzas = document.getElementById('movingPizzas1');
+    
+  console.log("screenHeight = " + screenHeight + ". cols = " + cols + ". rows = " + rows + ". elements = " + elements + ". verticalPadding = " + verticalPadding + ". ");
   
   for (var i = 0, elem; i < elements; i++) {
     elem = document.createElement('img');
