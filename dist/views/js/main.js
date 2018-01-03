@@ -524,7 +524,6 @@ function updatePositions() {
     
   var top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
   var position = top / 1250;
-  console.log(position);
   var items = document.getElementsByClassName("mover");
   
   // Declared phase var in initialization of loop so it isn't 
